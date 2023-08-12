@@ -62,6 +62,11 @@ class VideoListFragment : Fragment(), OnItemListener {
 
         requireActivity().title = "Simple Video Player"
 
+        binding.swipeVideo.setOnRefreshListener {
+            binding.swipeVideo.isRefreshing = false
+            viewModel.getAllMovies()
+        }
+
         return binding.root
 
     }
@@ -70,10 +75,12 @@ class VideoListFragment : Fragment(), OnItemListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.videoResponse.observe(this) {
+            binding.errorTV.visibility = View.GONE
             it.data.videos.data?.let { it1 -> rvAdapter?.setMovies(it1) }
         }
 
         viewModel.errorMessage.observe(this) {
+            binding.errorTV.visibility = View.VISIBLE
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
