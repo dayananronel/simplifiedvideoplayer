@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/video_nav"
+    app:startDestination="@id/videoListFragment">
+
+    <fragment
+        android:id="@+id/videoListFragment"
+        android:name="com.ronel.simplevideoplayer.view.menu.VideoListFragment"
+        android:label="VideoListFragment" >
+        <action
+            app:popUpToInclusive="true"
+            android:id="@+id/action_videoListFragment_to_videoInfoFragment"
+            app:destination="@id/videoInfoFragment" >
+            <argument
+                android:name="video"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoInfoFragment"
+        android:name="com.ronel.simplevideoplayer.view.menu.VideoInfoFragment"
+        android:label="VideoInfoFragment" />
+
+
+</navigation>
