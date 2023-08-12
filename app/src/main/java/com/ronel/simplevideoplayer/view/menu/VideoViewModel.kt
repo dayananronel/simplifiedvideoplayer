@@ -17,17 +17,22 @@ class VideoViewModel constructor(private val mainRepository: MainRepository) : V
 
     fun getAllMovies() {
         job = CoroutineScope(Dispatchers.IO).launch {
-            val response = mainRepository.getAllVideo()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    videoResponse.postValue(response.body())
-                    loading.value = false
-                } else {
-                    onError("Error : ${response.message()} ")
+            try {
+                val response = mainRepository.getAllVideo()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        videoResponse.postValue(response.body())
+                        loading.value = false
+                    } else {
+                        onError("Error! ${response.message()} ")
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    onError("Error! Please check internet connection ")
                 }
             }
         }
-
     }
 
     private fun onError(message: String) {

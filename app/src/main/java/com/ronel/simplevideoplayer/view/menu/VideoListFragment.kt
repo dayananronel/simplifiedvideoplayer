@@ -60,6 +60,7 @@ class VideoListFragment : Fragment(), OnItemListener {
 
         binding.viewModel = viewModel
 
+        requireActivity().title = "Simple Video Player"
 
         return binding.root
 

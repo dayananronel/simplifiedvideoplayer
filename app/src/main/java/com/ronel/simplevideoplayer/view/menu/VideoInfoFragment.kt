@@ -70,7 +70,7 @@ class VideoInfoFragment : Fragment() {
             exoPlayer = ExoPlayerFactory.newSimpleInstance(requireContext(), trackSelector)
             // we are parsing a video url and parsing its video uri.
             //val videouri = Uri.parse(videoData?.mp4_video_source)
-            val videouri = Uri.parse("https://joy.videvo.net/videvo_files/video/premium/partners0040/large_watermarked/BB_8e780b7f-3eba-4c54-9fe5-e135eff52d1e_preview.mp4")
+            val videouri = Uri.parse(videoData?.mp4_video_source)
             // we are creating a variable for datasource factory and setting its user agent as 'exoplayer_view'
             val dataSourceFactory = DefaultHttpDataSourceFactory("exoplayer_video")
             // we are creating a variable for extractor factory and setting it to default extractor factory.
